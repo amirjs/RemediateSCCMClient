@@ -3,7 +3,11 @@
     Script to detect if Configuration Manager Client and WMI is healthy on end points
 
 .DESCRIPTION 
-    This script is aimed at hybrid joined devices with ConfigMgr Client falsely reporting as healthy
+    This script is aimed at hybrid joined devices with ConfigMgr Client falsely reporting as healthy.
+    - WMI check to see if Root\CCM is accessible
+    - Check Last policy request was within 24 hours
+    - Check Current Management Point is set
+    - CcmExec service is running
  
 .NOTES     
 

@@ -38,7 +38,6 @@ Function Reset-WMI {
     Param (
         $CCMSetupWait = 10
     )
-
      ####Do heal WMI 
      Write-Host "Stopping winmgmt Service..."
      Stop-Service winmgmt -Force
@@ -53,15 +52,15 @@ Function Reset-WMI {
      Do {
          $status = Get-Process ccmsetup -ErrorAction SilentlyContinue
          If (!($status)) { 
-             Write-Host "Waiting for ccmsetup to start - time elapsed: $(($limit - (Get-Date)).minutes)" 
+             Write-Host "Waiting for ccmsetup to start - time elapsed: $(($limit - (Get-Date)).minutes) minutes and $(($limit - (Get-Date)).seconds) seconds" 
              Start-Sleep -Seconds 30                        
          }                    
          Else { 
-             Write-Host "ccmsetup has started - time elapsed: $(($limit - (Get-Date)).minutes)" 
+             Write-Host "ccmsetup has started - time elapsed: $(($limit - (Get-Date)).minutes) minutes and $(($limit - (Get-Date)).seconds) seconds" 
              $started = $true 
          }
      }
-     Until ( $started -or ((get-date) -le $limit))                
+     Until ( $started -or ((get-date) -gt $limit))                
      
      #Report if the Do while exited without CCMSetup starting 
      if ($started -eq $False) {
