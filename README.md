@@ -1,6 +1,7 @@
 
 # Configuration Manager Client Self-Heal Using PowerShell and Intune Proactive Remediations
 
+Original Article on [Configuration Manager Client Self-Heal Using PowerShell and Intune Proactive Remediations - Ninar (ninaronline.co.uk)](https://ninaronline.co.uk/2022/08/17/configuration-manager-client-self-heal-using-powershell-and-intune-proactive-remediations/) 
 Co-managing Windows Devices made it possible to concurrently manage devices using the good old Configuration Manager and Microsoft Intune. Basically getting the best of both worlds as you transition to modern management.
 
 This opens the door to leveraging  [Intune Proactive Remediations.](https://docs.microsoft.com/en-us/mem/analytics/proactive-remediations)  which enables detection and remediation scripts to find and fix the problem before it is realised and before it becomes a ticket in the Desktop Support queue.
@@ -25,21 +26,21 @@ The script checks for the following abnormalities on the endpoint:
 
 If CCMSetup is running, the script will exit gracefully for this detection intervel
 
-#Check if CCMSetup is not running, otherwise, don't run the detections/remediations
-
-$status = Get-Process ccmsetup -ErrorAction SilentlyContinue
-
-if  ($status)  {
-
-Write-Output  "CCMSetup.exe is running, skipping detection/remediations for this interval"
-
-Stop-Transcript | Out-Null
-
-Remove-Item -Path c:\Windows\logs\DetectingCCMClient_$($env:COMPUTERNAME)_$CurrentTime.log -Force | Out-Null
-
-exit  0
-
-}
+    #Check if CCMSetup is not running, otherwise, don't run the detections/remediations
+    
+        $status = Get-Process ccmsetup -ErrorAction SilentlyContinue
+        
+        if  ($status)  {
+        
+        Write-Output  "CCMSetup.exe is running, skipping detection/remediations for this interval"
+        
+        Stop-Transcript | Out-Null
+        
+        Remove-Item -Path c:\Windows\logs\DetectingCCMClient_$($env:COMPUTERNAME)_$CurrentTime.log -Force | Out-Null
+        
+        exit  0
+        
+        }
 
 We also check for the existence of CcmExec.exe, if it doesn’t exist, we skip checks as they are not applicable. If it does exist, we go on a series of try/catch and if-else statements to check the health of each component from the above list.
 
