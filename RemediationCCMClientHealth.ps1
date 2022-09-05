@@ -132,7 +132,7 @@ Function Restore-CCMService {
 Function Update-CCMMachinePolicy {
     [CmdletBinding()]
     Param (
-        $LoopingWindowInMinutes = 25
+        $LoopingWindowInMinutes = 60
     )
 
     ####Do heal last policy refresh
