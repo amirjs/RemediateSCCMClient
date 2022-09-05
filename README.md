@@ -2,6 +2,7 @@
 # Configuration Manager Client Self-Heal Using PowerShell and Intune Proactive Remediations
 
 Original Article on [Configuration Manager Client Self-Heal Using PowerShell and Intune Proactive Remediations - Ninar (ninaronline.co.uk)](https://ninaronline.co.uk/2022/08/17/configuration-manager-client-self-heal-using-powershell-and-intune-proactive-remediations/) 
+
 Co-managing Windows Devices made it possible to concurrently manage devices using the good old Configuration Manager and Microsoft Intune. Basically getting the best of both worlds as you transition to modern management.
 
 This opens the door to leveraging  [Intune Proactive Remediations.](https://docs.microsoft.com/en-us/mem/analytics/proactive-remediations)  which enables detection and remediation scripts to find and fix the problem before it is realised and before it becomes a ticket in the Desktop Support queue.
